@@ -1,20 +1,23 @@
 package com.klu.contract;
 
+import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.*;
-
 @RestController
-	@RequestMapping("/ms1")
-	public class AdditionController {
+@RequestMapping("/ms1")
+public class AdditionController {
 
-	    @GetMapping("/add")
-	    public Map<String, Integer> add(
-	            @RequestParam int a,
-	            @RequestParam int b) {
+    private final AdditionService service;
 
-	        int sum = a + b;
+    public AdditionController(AdditionService service) {
+        this.service = service;
+    }
 
-	        return Map.of("result", sum);
-	    }
-	}
+    @GetMapping("/add")
+    public Map<String, Integer> add(
+            @RequestParam int a,
+            @RequestParam int b) {
+
+        return Map.of("result", service.add(a, b));
+    }
+}
