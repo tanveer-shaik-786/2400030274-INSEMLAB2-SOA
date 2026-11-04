@@ -1,0 +1,37 @@
+openapi: 3.0.3
+
+info:
+  title: Addition Microservice
+  version: 1.0.0
+
+paths:
+  /ms1/add:
+    get:
+      summary: Addition of two numbers
+      parameters:
+        - name: a
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 5
+
+        - name: b
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 10
+
+      responses:
+        '200':
+          description: Successful addition
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: integer
+              example:
+                result: 15
